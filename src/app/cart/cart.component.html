@@ -1,0 +1,39 @@
+
+<h2>Cart</h2>
+<div *ngIf=cartItems>
+  <div class="container">
+    <div class="row" *ngFor="let item of cartItems">
+      <item-preview [item]="item"></item-preview>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <input type="text" #input/>
+      <button (click)="setDiscount(input.value)">Apply discount</button>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      Total pay: {{cartService.getTotalPrice()}}
+    </div>
+  </div>
+  <div class="container">
+    <div class="row" (click)="setPaymentType($event.target.value)">
+      Please select payment method:
+      <button value="PayPal">PayPal</button>
+      <button value="Visa">Visa</button>
+      <button value="MasterCard">MasterCard</button>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <button (click)="pay()">Pay</button>
+    </div>
+  </div>
+  <div class="container" *ngIf="paymentOutput">
+    <div class="row">
+      {{paymentOutput}}
+    </div>
+  </div>
+</div>
+
